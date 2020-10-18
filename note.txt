@@ -4,3 +4,4 @@
         drag start and end nodes
     to-do:
         draw path interactively
+        drag end point causes program crash

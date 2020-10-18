@@ -176,13 +176,12 @@ def initWindow():
     dragNode = False
     node_x_temp = 0  # x position of the node before drag
     node_y_temp = 0  # y position of the node before drag
-    global nodeSet
     while True:
         # adjust rect color based on mouse clicks
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
+                sys.quit()
 
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 mouse_x, mouse_y = event.pos
@@ -271,10 +270,6 @@ def updateScreen():
 
     pygame.display.update()
 
-#def dragNode(pygameNode):
-
-#def updateMaze():
-
 
 
 if __name__ == '__main__':
@@ -282,7 +277,7 @@ if __name__ == '__main__':
     maze = [[0 for i in range(WINDOW_WIDTH)] for j in range(WINDOW_HEIGHT)]
     global start, end
     start = [5, 5]
-    end = [25, 15]
+    end = [25, 18]
     cost = 1
 
     global path
