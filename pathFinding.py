@@ -1,3 +1,4 @@
+#Visuliszing A* path finding with pygame...
 import numpy as np
 import pygame
 
