@@ -5,3 +5,9 @@
     to-do:
         draw path interactively
         drag end point causes program crash
+
+04.11.2020
+    finished:
+        animation of path finding
+    to-do:
+        obstacles not working
