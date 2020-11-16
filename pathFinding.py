@@ -69,15 +69,9 @@ def return_path(current_node):
         path.append(current.position)
         current = current.parent
 
+    #arrange the path in the start-end order
     path = path[::-1]
-    # set pygame rectangles on the path according to the path
-    #start_value = 0
-    '''
-    for i in range(len(path)):
-        result[path[i][0]][path[i][1]] = start_value
-        start_value += 1
-    return result
-    '''
+
     return path
 
 def AStarSearch(maze, cost, start, end):
@@ -166,7 +160,7 @@ def initWindow():
 
     # pygame window and clock
     global SCREEN, CLOCK
-    #
+    
     #global startNode_x, startNode_y, endNode_x, endNode_y
     # two variable to help tracking mousemotion
     global mouse_x_pre, mouse_y_pre
@@ -364,14 +358,5 @@ def drawPath(path):
         all_rects[x][y].setType(NODETYPE_PATH)
         updateScreen(0.1)
 
-def logMsg():
-    print('Start: '+start)
-    print('End: '+end)
-
 if __name__ == '__main__':
     initWindow()
-
-    #global path
-    #path = AStarSearch(maze, cost, start, end)
-    #print('\n'.join([''.join(["{:" ">3d}".format(item) for item in row]) for row in path]))
-    # print(path)
