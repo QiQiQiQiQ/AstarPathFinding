@@ -136,7 +136,8 @@ def AStarSearch(maze, cost, start, end):
                     node_position[1] > (no_columns - 1) or
                     node_position[1] < 0):
                 continue
-            if maze[node_position[0]][node_position[1]] == -1:
+            #if maze[node_position[0]][node_position[1]] == -1:
+            if all_rects[node_position[0]][node_position[1]].nodeType == NODETYPE_OBSTACLE:
                 continue
             new_node = Node(current_node, node_position)
 
@@ -227,14 +228,16 @@ def initWindow():
                 if start_button.collidepoint(mouse_y, mouse_x) and event.button == 1:
                     print("start path finding")
                     finding = True
+                    resetMaze(1)
                     initMaze()
+                    updateScreen(0)
                     path = AStarSearch(maze, cost, start, end)
                     drawPath(path)
                     print('\n'.join(
                         [''.join(["{:" ">3d}".format(item) for item in row]) for row in path]))
                     finding = False
                 elif clear_button.collidepoint(mouse_y, mouse_x) and event.button == 1:
-                    resetMaze()
+                    resetMaze(0)
                 # mouse clicked inside the board
                 elif y < WINDOW_WIDTH and x < WINDOW_HEIGHT:
                     if event.button == 1:
@@ -340,11 +343,17 @@ def initMaze():
                 end[1] = y
     print('\n'.join([''.join(["{:" ">3d}".format(item) for item in row]) for row in maze]))
 
-def resetMaze():
-    for y in range(WINDOW_WIDTH):
-        for x in range(WINDOW_HEIGHT):
-            if not ( (x==start[0] and y == start[1]) or ((x==end[0] and y == end[1])) ):
-                all_rects[x][y].setType(NODETYPE_BACKGROUND)
+def resetMaze(flag):
+    if flag == 0:   #reset to initial state, remove all nodes except for start and end node
+        for y in range(WINDOW_WIDTH):
+            for x in range(WINDOW_HEIGHT):
+                if not ( (x==start[0] and y == start[1]) or ((x==end[0] and y == end[1])) ):
+                    all_rects[x][y].setType(NODETYPE_BACKGROUND)
+    elif flag == 1: #remove all path finding related nodes
+        for y in range(WINDOW_WIDTH):
+            for x in range(WINDOW_HEIGHT):
+                if not ( (x==start[0] and y == start[1]) or ((x==end[0] and y == end[1])) or all_rects[x][y].nodeType == NODETYPE_OBSTACLE ):
+                    all_rects[x][y].setType(NODETYPE_BACKGROUND)
 
 def drawPath(path):
     for i in range(len(path)):

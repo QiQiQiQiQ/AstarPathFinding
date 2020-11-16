@@ -11,3 +11,9 @@
         animation of path finding
     to-do:
         obstacles not working
+
+16.11.2020
+    finished:
+        obstacles are working
+    to-do:
+        add some explanation to the window
